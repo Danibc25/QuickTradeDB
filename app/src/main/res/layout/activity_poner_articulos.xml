@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PonerArticulos"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:paddingTop="30dp">
+
+    <TextView
+        android:id="@+id/nomArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Nombre"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/nomArtEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Macbook Pro"
+        android:inputType="text"
+        android:textSize="15dp"  />
+    <TextView
+        android:id="@+id/descripArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Descripcion"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/descripArtEt"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:maxLength="50"
+        android:maxLines="3"
+        android:hint="MacBook pro Retina de 15''\nnuevo, a estrenar..."
+        android:inputType="textMultiLine"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/categoriaArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Categoria"
+        android:textSize="20dp" />
+
+    <Spinner
+        android:id="@+id/categoriaSP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:id="@+id/precioArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Precio"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/precioArtEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="2.800€"
+        android:inputType="text"
+        android:textSize="15dp"  />
+
+    <Button
+        android:id="@+id/btnAñadir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Añadir" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar" />
+
+</LinearLayout>

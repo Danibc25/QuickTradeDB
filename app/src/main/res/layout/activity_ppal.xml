@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".Ppal">
+    <TextView
+        android:id="@+id/TituloPpal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informacion User"
+        android:textAlignment="center"
+        android:textColor="#4ab7ab"
+        android:textSize="30dp"
+        android:textStyle="bold|italic" />
+
+
+    <TextView
+        android:id="@+id/pNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Nombre" />
+
+    <EditText
+        android:id="@+id/pNombreEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/pApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Apellido" />
+
+    <EditText
+        android:id="@+id/pApellidoEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:inputType="textPersonName"
+        android:text="" />
+    <TextView
+        android:id="@+id/pDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Direccion" />
+
+    <EditText
+        android:id="@+id/pDieccionEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modificar info" />
+
+    <Button
+        android:id="@+id/btnVender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Añadir articulo" />
+
+    <Button
+        android:id="@+id/btnModArticulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver mis articulos" />
+
+</LinearLayout>

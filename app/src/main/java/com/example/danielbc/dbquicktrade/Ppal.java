@@ -25,7 +25,7 @@ import java.util.Iterator;
 public class Ppal extends AppCompatActivity {
 
     private EditText etNombre, etApellido, etDireccion;
-    private Button Modificar, Vender, VerMisArt;
+    private Button Modificar, Vender, VerMisArt, VerCategorias;
     private String idUsuario;
     private FirebaseAuth mAuth;
     final static int Ppal = 3;
@@ -53,6 +53,7 @@ public class Ppal extends AppCompatActivity {
         Modificar = findViewById(R.id.btnModificar);
         Vender = findViewById(R.id.btnVender);
         VerMisArt = findViewById(R.id.btnModArticulo);
+        VerCategorias = findViewById(R.id.btnCategoria);
 
 
         Modificar.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,18 @@ public class Ppal extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(getApplicationContext(), VerMisArticulos.class);
+
+                i.putExtra("UID", idUsuario);
+                startActivityForResult(i, Ppal);
+
+
+            }
+        });
+
+        VerCategorias.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), VerPorCategoria.class);
 
                 i.putExtra("UID", idUsuario);
                 startActivityForResult(i, Ppal);
@@ -157,6 +170,7 @@ public class Ppal extends AppCompatActivity {
                         database.child(clave).child("apellido").setValue(sApellidos);
                         database.child(clave).child("direccion").setValue(sDireccion);
                     }
+                    Toast.makeText(Ppal.this, "Modificado", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

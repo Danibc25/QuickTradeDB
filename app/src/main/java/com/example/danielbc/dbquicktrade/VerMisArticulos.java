@@ -1,7 +1,11 @@
 package com.example.danielbc.dbquicktrade;
 
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +32,7 @@ public class VerMisArticulos extends AppCompatActivity {
     private Button btnMod, btnDel, btnCancel;
     private Spinner spArticulos;
 
-    private String idUsuario;
+    private String idUsuario, keyUsuario;
     private FirebaseAuth mAuth;
     DatabaseReference database;
     private ArrayList<String> ListasSP = new ArrayList<String>();
@@ -50,6 +54,10 @@ public class VerMisArticulos extends AppCompatActivity {
         modPrecio = findViewById(R.id.modPrecioEt);
         spArticulos = findViewById(R.id.articulosSP);
 
+        btnCancel = findViewById(R.id.btnCancelar);
+        btnDel = findViewById(R.id.btnDelete);
+        btnMod = findViewById(R.id.btnModificar);
+
 
         Query q = database.orderByChild("vendedorId").equalTo(idUsuario);
 
@@ -60,6 +68,7 @@ public class VerMisArticulos extends AppCompatActivity {
                                              public void onDataChange(DataSnapshot dataSnapshot) {
                                                  ArrayAdapter<String> adaptador;
                                                  for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+
                                                      Producto pr1 = datasnapshot.getValue(Producto.class);
                                                      String prNombre = pr1.getNombre();
                                                      String prDescripcion = pr1.getDescripcion();
@@ -67,8 +76,10 @@ public class VerMisArticulos extends AppCompatActivity {
                                                      String prPrecio = pr1.getPrecio();
                                                      String prVendedorId = pr1.getNombre();
 
+                                                     final String clave = datasnapshot.getKey();
+
                                                      ListasSP.add(prNombre);
-                                                     ListasDatos.add(new Producto(prNombre, prDescripcion, prCategoria, prPrecio, prVendedorId));
+                                                     ListasDatos.add(new Producto(prNombre, prDescripcion, prCategoria, prPrecio, prVendedorId, clave));
 
                                                      cont++;
                                                      Toast.makeText(VerMisArticulos.this, "He encontrado: " + cont, +Toast.LENGTH_SHORT).show();
@@ -89,6 +100,9 @@ public class VerMisArticulos extends AppCompatActivity {
                                                                      modDescripcion.setText(elemento.getDescripcion());
                                                                      modCategoria.setText(elemento.getCategoria());
                                                                      modPrecio.setText(elemento.getPrecio());
+                                                                     keyUsuario = elemento.getMykey();
+
+                                                                     Toast.makeText(VerMisArticulos.this, "La Key es " + keyUsuario, Toast.LENGTH_LONG).show();
 
                                                                  }
                                                              }
@@ -115,5 +129,88 @@ public class VerMisArticulos extends AppCompatActivity {
 
         );
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteArt();
+
+            }
+        });
+
+        btnMod.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                modificarArt();
+
+            }
+        });
+
+
     }
+
+    public void deleteArt() {
+        // Hacemos una Búsqueda por nombre del Usuario
+        Query q = database.orderByChild("mykey").equalTo(keyUsuario);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                    // clave obtiene el id de la fila del JSON
+                    String clave = datasnapshot.getKey();
+                    database.child(clave).removeValue();
+                }
+                Toast.makeText(VerMisArticulos.this, "Eliminado", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void modificarArt() {
+
+
+        // Optenemos los 3 valores de los editText
+        final String mNombre = modNombre.getText().toString();
+        final String mDescripcion = modDescripcion.getText().toString();
+        final String mPrecio = modPrecio.getText().toString();
+        final String mCategoria = modCategoria.getText().toString();
+
+        // Hacemos una comprobación sobre el si los campos no estan vacios
+        if (!TextUtils.isEmpty(mNombre) || !TextUtils.isEmpty(mPrecio) || !TextUtils.isEmpty(mCategoria)) {
+            // Hacemos una Búsqueda por nombre del Usuario
+            Query q = database.orderByChild("mykey").equalTo(keyUsuario);
+            q.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                        // clave obtiene el id de la fila del JSON
+                        String clave = datasnapshot.getKey();
+                        // En las 3 siguientes líneas lo que hacemos es Cambiar los valores del JSON
+                        database.child(clave).child("categoria").setValue(mCategoria);
+                        database.child(clave).child("descripcion").setValue(mDescripcion);
+                        database.child(clave).child("nombre").setValue(mNombre);
+                        database.child(clave).child("precio").setValue(mPrecio);
+                    }
+                    Toast.makeText(VerMisArticulos.this, "Modificado", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+
+    }
+
 }

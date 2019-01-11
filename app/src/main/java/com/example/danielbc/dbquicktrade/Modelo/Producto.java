@@ -6,16 +6,18 @@ public class Producto {
     String categoria;
     String precio;
     String vendedorId;
+    String mykey;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, String categoria, String precio, String vendedorId) {
+    public Producto(String nombre, String descripcion, String categoria, String precio, String vendedorId, String mykey) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
         this.vendedorId = vendedorId;
+        this.mykey = mykey;
     }
 
     public String getNombre() {
@@ -56,5 +58,13 @@ public class Producto {
 
     public void setVendedorId(String vendedorId) {
         this.vendedorId = vendedorId;
+    }
+
+    public String getMykey() {
+        return mykey;
+    }
+
+    public void setMykey(String mykey) {
+        this.mykey = mykey;
     }
 }

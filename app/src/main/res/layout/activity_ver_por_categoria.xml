@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VerMisArticulos">
+    tools:context=".VerPorCategoria">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,44 +20,50 @@
             android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/articulosSP"
+                android:id="@+id/categoriaSPver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/productoSPver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/modNombre"
+                android:id="@+id/vCatNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Nombre"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/modNombreEt"
+            <TextView
+                android:id="@+id/vCatNombreEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/modDescripcion"
+                android:id="@+id/vCatDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Descripcion"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/modDescripcionEt"
+            <TextView
+                android:id="@+id/vCatDescripcionEt"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:inputType="textMultiLine"
                 android:maxLength="50"
                 android:maxLines="3"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:text=""/>
 
             <TextView
-                android:id="@+id/modCategoria"
+                android:id="@+id/vCatCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -65,39 +71,27 @@
                 android:textSize="20dp" />
 
 
-            <EditText
-                android:id="@+id/modCategoriaEt"
+            <TextView
+                android:id="@+id/vCatCategoriaEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/modPrecio"
+                android:id="@+id/vCatPrecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Precio"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/modPrecioEt"
+            <TextView
+                android:id="@+id/vCatPrecioEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="15dp" />
 
-
-            <Button
-                android:id="@+id/btnModificar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Modificar info" />
-
-            <Button
-                android:id="@+id/btnDelete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Borrar articulo" />
 
             <Button
                 android:id="@+id/btnCancelar"

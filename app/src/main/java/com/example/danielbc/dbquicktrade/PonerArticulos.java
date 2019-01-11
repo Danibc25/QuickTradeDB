@@ -24,7 +24,6 @@ public class PonerArticulos extends AppCompatActivity {
     DatabaseReference databaseART;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +37,8 @@ public class PonerArticulos extends AppCompatActivity {
         databaseART = FirebaseDatabase.getInstance().getReference("Productos");
 
         nomArticulo = findViewById(R.id.nomArtEt);
-        desArticulo= findViewById(R.id.descripArtEt);
-        precioArticulo =findViewById(R.id.precioArtEt);
+        desArticulo = findViewById(R.id.descripArtEt);
+        precioArticulo = findViewById(R.id.precioArtEt);
         categoriaArticulo = findViewById(R.id.categoriaSP);
 
         Anadir = findViewById(R.id.btnAñadir);
@@ -52,8 +51,6 @@ public class PonerArticulos extends AppCompatActivity {
         categoriaArticulo.setAdapter(adapter);
 
 
-
-
         Cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -62,11 +59,24 @@ public class PonerArticulos extends AppCompatActivity {
         });
         Anadir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               Producto p1 = new Producto(nomArticulo.getText().toString(), desArticulo.getText().toString(), categoriaArticulo.getSelectedItem().toString(), precioArticulo.getText().toString(),idUsuario);
-               String Clave= databaseART.push().getKey();
-               databaseART.child(Clave).setValue(p1);
+                try {
+                    String Clave = databaseART.push().getKey();
+                    Producto p1 = new Producto(nomArticulo.getText().toString(), desArticulo.getText().toString(), categoriaArticulo.getSelectedItem().toString(), precioArticulo.getText().toString(), idUsuario, Clave);
+                    databaseART.child(Clave).setValue(p1);
+                    Toast.makeText(PonerArticulos.this, "Exito!", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(PonerArticulos.this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
     }
 }
+
+
+
+
+
+
+

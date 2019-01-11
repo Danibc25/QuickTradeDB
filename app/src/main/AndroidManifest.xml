@@ -19,7 +19,8 @@
         <activity android:name=".Registro" />
         <activity android:name=".Ppal" />
         <activity android:name=".PonerArticulos" />
-        <activity android:name=".VerMisArticulos"></activity>
+        <activity android:name=".VerMisArticulos" />
+        <activity android:name=".VerPorCategoria"></activity>
     </application>
 
 </manifest>
